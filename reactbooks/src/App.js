@@ -8,9 +8,7 @@ class App extends Component {
     super()
     this.state = {
       bookArray: this.preparebooks()
-      // onClick: this.opendrop()
     }
-    console.log('this state', this.state)
   }
 
   preparebooks () {
@@ -18,22 +16,13 @@ class App extends Component {
       return { bookentry: entry,
         closed: true}
     })
-    console.log(newArray)
     return newArray
   }
 
   openDrop (index) {
-  //   console.log('this state open', this.state)
-    console.log(this.state)
-    console.log(this.state.bookArray)
     const updatedArray = this.state.bookArray.map(function (entry, i) {
       if (i === index) {
-        console.log('entry.close', entry.closed)
         let swap = !(entry.closed)
-        console.log('swap', swap)
-        console.log({
-          bookentry: entry.bookentry,
-          closed: swap})
         return {
           bookentry: entry.bookentry,
           closed: swap}
@@ -43,21 +32,17 @@ class App extends Component {
           closed: entry.closed}
       }
     })
-    console.log(updatedArray)
     this.setState({
       bookArray: updatedArray
     })
-    return console.log('FUCKIN WORKED', index)
   }
 
   render () {
-    console.log(this.state)
-    console.log(this.state.bookArray)
     return (
       <div className='main'>
-        <header className='header'>
+        <section className='banner'>
           <h1 className='title'>React Books</h1>
-        </header>
+        </section>
         <section className='books'>
           <Book array={this.state.bookArray} onClick={(i) => this.openDrop(i)} />
         </section>
@@ -65,5 +50,5 @@ class App extends Component {
     )
   }
 }
-// onClick={() => this.props.onClick(i)}
+
 export default App
